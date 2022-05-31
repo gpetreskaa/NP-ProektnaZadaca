@@ -24,40 +24,40 @@ struct compare // sorting function
 int main() //Main program
 {
     string name = "Gordana"; //име
-    string lastname = "Petreska";
-    int ix = 753; 
-    int dob = 708;
+    string lastname = "Petreska"; //презиме     
+    int ix = 753; //индекс
+    int dob = 708; //датум на раѓање
 
     string city[10] =  {"Skopje", "Bitola", "Ohrid", "Stip", "Prilep", "Kicevo", "Sveti Nikole", "Veles", "Gevgelija", "Makedonski Brod"};
-    map<string, int> covid2205; //declaring map
+    map<string, int> covid2205; //декларираме мапа со име covid2205 за датум 22.05.2022 и итератоr кој ни овозможува пристап до посебни елементи
     map<string, int>::iterator iter; 
 
-    string date; //specific date
+    string date; //декларираме стринг дата и внесуваме преку конзола за кој датум важат податоците 
     cout <<"New Covid cases in Macedonia for specific date: ";
     getline(cin, date); 
     cout<<"----------------------------------------"<<endl;
     
 
-    for(;;) { //entering cities and infected amount
+    for(;;) { //ги внесуваме грдовите и бројот на заразени
         string in; 
         cout << "Enter city and infected amount: ";
         std::getline(std::cin, in); 
         
-        if (in == "") { 
+        if (in == "") { // доколку не се внеси вредност печатиме 
             cout << endl << "No further data entered, processing..." << endl;
             break;
         }
         cout << endl;
         
-        vector<string> words{}; //for cities with 2 names
+        vector<string> words{}; //За кодот да прима градови со две имиња, конвертира карактер вектор во стринг со користење на стринг функцијата
 
         size_t pos = 0; 
         while ((pos = in.find(" ")) != string::npos) { 
-            words.push_back(in.substr(0, pos)); 
+            words.push_back(in.substr(0, pos)); //додавање елемент на крајот на стрингот
             in.erase(0, pos + 1); 
         }
         
-        int infected = stoi(in);
+        int infected = stoi(in); //конвертира стринг во Integer
         string cityInfected = "";
         for(int i = 0; i != words.size(); ++i) {
              cityInfected = cityInfected + words[i];
@@ -65,7 +65,7 @@ int main() //Main program
         covid2205[cityInfected] = infected;
     }
     
-    if (covid2205.size() < 10) { //if entered less than 10 cities, print 0 as default
+    if (covid2205.size() < 10) { //Доколку внесиме помалку од 10 градови да се печати вредност за останатите градови 0 како default
         for (int i = 0; i < (sizeof (city) / sizeof city[0]); ++i) {
             if (covid2205.find(city[i]) == covid2205.end()) {
              covid2205[city[i]] = 0;   
