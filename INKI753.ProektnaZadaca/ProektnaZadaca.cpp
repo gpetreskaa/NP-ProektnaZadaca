@@ -23,7 +23,7 @@ struct compare //функција за сортирање compare. Корист�
 };
 
 int main() //Main програма
-{
+{//информации кои ќе ни бидат потребни кога ќе додаваме 2 нови пара во мапата
     string name = "Gordana"; //име
     string lastname = "Petreska"; //презиме     
     int ix = 753; //индекс
@@ -88,10 +88,10 @@ int main() //Main програма
     cout<<endl;
 
     
-    covid2205.insert ( std::pair<string,int>("Gordana", 708) ); //adding two more pairs
+    covid2205.insert ( std::pair<string,int>("Gordana", 708) ); //додаваме два нови пара со информациите од погоре
     covid2205.insert ( std::pair<string,int>("INKI", 753) );
 
-    /*If we were to print the pairs
+    /*Се додава овој код дколку сакаме да ја испечатиме мапата заедно со новододадените парови
     cout<<"List of cities and infected amounts plus two added pairs of information: "<<endl;
     for (iter=covid2205.begin();iter!=covid2205.end();iter++)
     cout << iter->first << " - "<< iter->second <<endl; 
@@ -101,11 +101,11 @@ int main() //Main програма
 
     covid2205["INKI"] = ix; 
     covid2205[name] = dob;
-    string filename("INKI" + to_string(ix) + name + lastname); //creating file 
+    string filename("INKI" + to_string(ix) + name + lastname); //креирање на фајл именуван како INKI753GordanaPetreska
     ofstream file_out;
 
     file_out.open(filename, std::ios_base::app);
-    file_out << "Date: " << date << endl;
+    file_out << "Date: " << date << endl; // најпрво се печати датумот а потоа се печати мапата заедно со новододадените елементи
     for (map<string, int>::iterator it = covid2205.begin(); it != covid2205.end(); it++)
     {
         file_out << it->first << " - " << it->second << endl;
