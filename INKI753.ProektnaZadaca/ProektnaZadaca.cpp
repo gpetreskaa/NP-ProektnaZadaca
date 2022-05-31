@@ -8,10 +8,11 @@
 
 using namespace std;
 
-struct compare // sorting function
+struct compare //функција за сортирање compare. Користиме struct затоа што овозможува групирање на повеќе поврзани променливи на едно место
 {
-    template<typename T>
-    bool operator()(const T &l, const T &r) const
+    template<typename T>//Template користиме за пренос на типот на податоци како параметар за истиот код да не го пишуваме за различни типови податоци
+    bool operator()(const T &l, const T &r) const /*Се прави компарација меѓу два члена од типот pair. Прво проверува дали first property на парот е различно
+    и доколку е тогаш прави compare на нив два. Доколку се еднакви тогаш прави compare на second property*/
     {
         if (l.second != r.second) {
             return l.second < r.second;
@@ -21,7 +22,7 @@ struct compare // sorting function
     }
 };
 
-int main() //Main program
+int main() //Main програма
 {
     string name = "Gordana"; //име
     string lastname = "Petreska"; //презиме     
@@ -74,12 +75,12 @@ int main() //Main program
     }
     cout<<endl;
 
-    cout << "Cities and infected amounts: "<<endl; //print unsorted list
+    cout << "Cities and infected amounts: "<<endl; //Се печати несортирана листа
     for (iter=covid2205.begin();iter!=covid2205.end();iter++)
     cout << iter->first << " - "<< iter->second <<endl;
     
     cout << endl << endl;
-    cout << "Sorted cities by infected amount from lowest to highest: " << endl; //print sorted list
+    cout << "Sorted cities by infected amount from lowest to highest: " << endl; //Се печати сортирана листа
     std::set<std::pair<std::string, int>, compare> set(covid2205.begin(), covid2205.end());
     for (auto const &pair: set) {
         std::cout << pair.first << " - " << pair.second << std::endl;
