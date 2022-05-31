@@ -23,7 +23,7 @@ struct compare // sorting function
 
 int main() //Main program
 {
-    string name = "Gordana"; //info
+    string name = "Gordana"; //име
     string lastname = "Petreska";
     int ix = 753; 
     int dob = 708;
